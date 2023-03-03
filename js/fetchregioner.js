@@ -1,5 +1,6 @@
 console.log("vi er i fetchregioner")
 const urlRegioner = "https://api.dataforsyningen.dk/regioner"
+const urlPostRegion = "http://localhost:8080/region"
 
 function fetchAny(url) {
     console.log(url)
@@ -40,9 +41,19 @@ function postRegioner(region) {
     fetch(urlPostRegion, postRegionRequest).catch((error) => console.log(error));
 }
 
-
+function actionPostAllRegioner() {
+    if (regionList) {
+        console.log("post alle regioner")
+        regionList.forEach(postRegioner)
+    } else {
+        console.log("tryk på fetchregion knappen fjols")
+    }
+}
 
 const pbFetchRegioner = document.getElementById("pbFetchRegioner")
 pbFetchRegioner.addEventListener('click', fetchRegioner)
+const pbPostRegioner = document.getElementById("pbPostRegioner")
+pbPostRegioner.addEventListener('click', actionPostAllRegioner)
+
 
 
