@@ -16,11 +16,30 @@ function fillRegionerDropDown(region) {
     ddRegioner.appendChild(el)
 }
 
+regionList = []
 async function fetchRegioner() {
-    const regionList = await fetchAny(urlRegioner);
+    regionList = await fetchAny(urlRegioner);
     console.log(regionList)
     regionList.forEach(fillRegionerDropDown)
 }
+
+let body = {}
+
+const postRegionRequest = {
+    method: "POST",
+    headers: {
+        "content-type": "application/json"
+    },
+    body: body
+}
+
+function postRegioner(region) {
+    body = JSON.stringify(region)
+    console.log(body)
+    postRegionRequest.body = body
+    fetch(urlPostRegion, postRegionRequest).catch((error) => console.log(error));
+}
+
 
 
 const pbFetchRegioner = document.getElementById("pbFetchRegioner")
