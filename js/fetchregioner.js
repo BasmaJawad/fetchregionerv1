@@ -23,9 +23,7 @@ async function fetchRegioner() {
     console.log(regionList)
     regionList.forEach(fillRegionerDropDown)
 }
-
 let body = {}
-
 const postRegionRequest = {
     method: "POST",
     headers: {
@@ -33,14 +31,12 @@ const postRegionRequest = {
     },
     body: body
 }
-
 function postRegioner(region) {
     body = JSON.stringify(region)
     console.log(body)
     postRegionRequest.body = body
     fetch(urlPostRegion, postRegionRequest).catch((error) => console.log(error));
 }
-
 function actionPostAllRegioner() {
     if (regionList) {
         console.log("post alle regioner")
