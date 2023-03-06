@@ -59,7 +59,7 @@ async function restUpdateKommune(kommune) {
     const response = await fetch(url, fetchOptions);
     console.log(response);
     if (!response.ok) {
-        out("Det gik ikke godt med update");
+        console.log("Det gik ikke godt med update");
     };
     return response;
 }
