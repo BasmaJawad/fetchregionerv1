@@ -28,9 +28,11 @@ async function handleFormSubmit(event) {
 
 async function postFormData(url, formData) {
     const plainFormData = Object.fromEntries(formData.entries())
+    const ix = ddRegioner.selectedIndex;
+    const linje = ddRegioner[ix]
+    plainFormData.region = linje.region
     console.log(plainFormData)
     const formDataJsonString = JSON.stringify(plainFormData)
-
     const fetchOptions = {
         method: "POST",
         headers: {
@@ -49,10 +51,21 @@ async function postFormData(url, formData) {
 
 }
 
+const ddRegioner = document.getElementById("ddRegioner")
+function fillRegionerDropDown(region) {
+    //console.log(kom)
+    const el = document.createElement("option")
+    el.textContent = region.navn
+    el.value = region.kode
+    el.region = region
+    ddRegioner.appendChild(el)
+}
 
 async function getRegioner() {
     await fetchRegioner()
     console.log(regionList)
+    regionList.forEach(fillRegionerDropDown)
 }
 
 getRegioner();
+
