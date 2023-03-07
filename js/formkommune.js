@@ -29,11 +29,6 @@ async function handleFormSubmit(event) {
 async function postFormData(url, formData) {
     const plainFormData = Object.fromEntries(formData.entries())
     console.log(plainFormData)
-
-    const region = {}
-    region.kode = "1085"
-    plainFormData.region = region
-
     const formDataJsonString = JSON.stringify(plainFormData)
 
     const fetchOptions = {
@@ -55,4 +50,9 @@ async function postFormData(url, formData) {
 }
 
 
+async function getRegioner() {
+    await fetchRegioner()
+    console.log(regionList)
+}
 
+getRegioner();
