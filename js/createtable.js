@@ -10,11 +10,16 @@ function createTable(kommune) {
     let cellCount = 0
     let rowCount = tblKommune.rows.length
     let row = tblKommune.insertRow(rowCount)
+    row.id = kommune.navn;
+
     let cell = row.insertCell(cellCount++)
     cell.innerHTML = kommune.kode
 
     cell = row.insertCell(cellCount++)
-    cell.innerHTML = kommune.navn
+    let atag = document.createElement("a")
+    atag.setAttribute("href", kommune.href)
+    atag.innerText = kommune.navn
+    cell.appendChild(atag)
 
     cell = row.insertCell(cellCount++)
     cell.innerHTML = kommune.region.navn
@@ -33,6 +38,7 @@ function createTable(kommune) {
     img.setAttribute("height", 150)
     cell.appendChild(img)
 
+    //Update knap, sender kommune til PUT
     cell = row.insertCell(cellCount++)
     let pbUpdate = document.createElement("button")
     pbUpdate.textContent = "Opdater"
@@ -43,6 +49,22 @@ function createTable(kommune) {
     })
     cell.appendChild(pbUpdate)
 
+    //Delete knap, sender kommune til DELETE
+    cell = row.insertCell(cellCount++)
+    let pbDelete = document.createElement("button")
+    pbDelete.textContent = "Delete"
+    pbDelete.className = "buttondelete"
+    pbDelete.addEventListener('click', function () {
+        const rowdel = document.getElementById(kommune.navn)
+        rowdel.remove();
+        deleteKommune(kommune)
+    })
+    cell.appendChild(pbDelete)
+
+}
+
+async function deleteKommune(kommune) {
+    console.log("slet kommune" + kommune.navn)
 }
 
 async function updateKommune(kommune) {
