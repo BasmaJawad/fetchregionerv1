@@ -26,6 +26,14 @@ function createTable(kommune) {
     cell.appendChild(inpHrefPhoto)
 
     cell = row.insertCell(cellCount++)
+    let img = document.createElement("img")
+    img.setAttribute("src", kommune.hrefPhoto)
+    img.setAttribute("alt", "hej")
+    img.setAttribute("width", 150)
+    img.setAttribute("height", 150)
+    cell.appendChild(img)
+
+    cell = row.insertCell(cellCount++)
     let pbUpdate = document.createElement("button")
     pbUpdate.textContent = "Opdater"
     pbUpdate.className = "buttonupdate"
