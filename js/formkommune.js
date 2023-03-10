@@ -20,6 +20,15 @@ async function handleFormSubmit(event) {
         const formData = new FormData(form)
         console.log(formData)
         const responseData = await postFormData(url, formData)
+
+        // når vi har oprettet sognet
+        alert(formData.get('navn') + ' er oprettet');
+
+        const homeUrl = "kommunetabel.html";
+        window.location.replace(homeUrl); //man kan ikke gøre det her indeni en submit button
+        //window.location.href = homeUrl;
+
+
     } catch (error) {
         alert(error.message)
         console.log(error)
